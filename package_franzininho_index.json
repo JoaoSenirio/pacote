@@ -14,9 +14,9 @@
           "version": "1.0.0",
           "category": "contributed",
           "help": {"online": "http://www.franzininho.com.br"},
-          "url": "https://github.com/FBSeletronica/pacote/blob/master/franzininho-avr.zip?raw=true",
+          "url": "https://github.com/JoaoSenirio/pacote/blob/package_upgrade/franzininho-avr.zip?raw=true",
           "archiveFileName": "franzininho-avr.zip",
-          "size": "1445934",
+          "size": "1152085",
           "boards": [
             {"name": "Franzininho tiny841"},
             {"name": "Franzininho DIY(tiny85)"}
@@ -37,28 +37,16 @@
           "version":"2.0a4",
           "systems": [
             {
-                "host":"i686-mingw32",
-                "url":"https://github.com/watterott/Arduino-Boards/raw/master/files/micronucleus-win32.zip",
-                "archiveFileName":"micronucleus-2.0a4-win32.zip",
-                "size":"13187"
+              "host":"i686-mingw32",
+              "url":"https://github.com/JoaoSenirio/pacote/blob/package_upgrade/tools_file/micronucleus-1.0.0-win.zip?raw=true",
+              "archiveFileName":"micronucleus-1.0.0-win.zip",
+              "size":"39688"
             },
             {
-                "host":"x86_64-linux-gnu",
-                "url":"https://github.com/watterott/Arduino-Boards/raw/master/files/micronucleus-linux64.tar.gz",
-                "archiveFileName":"micronucleus-2.0a4-linux64.tar.gz",
-                "size":"20183"
-            },
-            {
-                "host":"i686-linux-gnu",
-                "url":"https://github.com/watterott/Arduino-Boards/raw/master/files/micronucleus-linux32.tar.gz",
-                "archiveFileName":"micronucleus-2.0a4-linux32.tar.gz",
-                "size":"19123"
-            },
-            {
-                "host":"x86_64-apple-darwin",
-                "url":"https://github.com/watterott/Arduino-Boards/raw/master/files/micronucleus-osx.tar.gz",
-                "archiveFileName":"micronucleus-2.0a4-osx.tar.gz",
-                "size":"25140"
+              "host":"x86_64-linux-gnu",
+              "url":"https://github.com/JoaoSenirio/pacote/blob/package_upgrade/tools_file/micronucleus-1.0.0-linux-x86_64.zip?raw=true",
+              "archiveFileName":"micronucleus-1.0.0-linux-x86_64.zip",
+              "size":"22010"
             }
           ]
         }
