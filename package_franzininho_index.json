@@ -14,7 +14,7 @@
           "version": "1.0.0",
           "category": "contributed",
           "help": {"online": "http://www.franzininho.com.br"},
-          "url": "https://github.com/JoaoSenirio/pacote/blob/package_upgrade/franzininho-avr.zip?raw=true",
+          "url": "https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/franzininho-avr.zip?raw=true",
           "archiveFileName": "franzininho-avr.zip",
           "size": "1152085",
           "boards": [
@@ -38,13 +38,13 @@
           "systems": [
             {
               "host":"i686-mingw32",
-              "url":"https://github.com/JoaoSenirio/pacote/blob/package_upgrade/tools_file/micronucleus-1.0.0-win.zip?raw=true",
+              "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/micronucleus-1.0.0-win.zip?raw=true",
               "archiveFileName":"micronucleus-1.0.0-win.zip",
               "size":"39688"
             },
             {
               "host":"x86_64-linux-gnu",
-              "url":"https://github.com/JoaoSenirio/pacote/blob/package_upgrade/tools_file/micronucleus-1.0.0-linux-x86_64.zip?raw=true",
+              "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/micronucleus-1.0.0-linux-x86_64.zip?raw=true",
               "archiveFileName":"micronucleus-1.0.0-linux-x86_64.zip",
               "size":"22010"
             }
