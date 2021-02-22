@@ -38,9 +38,9 @@
           "systems": [
             {
               "host":"i686-mingw32",
-              "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/micronucleus-1.0.0-win.zip?raw=true",
-              "archiveFileName":"micronucleus-1.0.0-win.zip",
-              "size":"39688"
+              "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/micronucleus-1.1.0-win.zip?raw=true",
+              "archiveFileName":"micronucleus-1.1.0-win.zip",
+              "size":"39936"
             },
             {
               "host":"x86_64-linux-gnu",
