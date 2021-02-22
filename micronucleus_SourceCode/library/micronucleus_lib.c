@@ -60,12 +60,14 @@ micronucleus* micronucleus_connect(int fast_mode) {
                   "A ferramenta atual desconhece como fazer upload para esse dispositivo. Atualizações podem estar disponíveis.\n"
                   "Versão do dispositivo detectado: %d.%d\n",
                   nucleus->version.major, nucleus->version.minor);
+          fflush(stdout);
           return NULL;
         }
 
         nucleus->device = usb_open(dev);
         if (!nucleus->device) {
                 fprintf(stderr, "Erro ao abrir porta %s do dispositivo %s: %s\n", bus->dirname, dev->filename, strerror(errno));
+                fflush(stdout);
                 return NULL;
         }
 
@@ -217,6 +219,7 @@ int micronucleus_writeFlash(micronucleus* deviceHandle, unsigned int program_siz
                   "O vetor de reset da aplicação não contém um instrução de desvio (branch instruction),\n "
                   "dessa forma o bootloader não pode ser inserido. Por favor revise o seu código.\n"
                   );
+          fflush(stdout);
           return -1;         
         } 
         

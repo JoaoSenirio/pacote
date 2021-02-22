@@ -100,7 +100,7 @@ int main(int argc, char **argv) {
       } else if (strcmp(argv[arg_pointer], "raw") == 0) {
         file_type = FILE_TYPE_RAW;
       } else {
-        printf("O tipo de arquivo especificado em --type option é desconhecido ");
+        printf("O tipo de arquivo especificado em --type option é desconhecido");
         return EXIT_FAILURE;
       }
     } else if (strcmp(argv[arg_pointer], "--help") == 0 || strcmp(argv[arg_pointer], "-h") == 0) {
@@ -121,7 +121,7 @@ int main(int argc, char **argv) {
       puts("                --no-ansi: Não use ANSI na saída do terminal");
       #endif
       puts("      --timeout [integer]: Tempo de espera especificado em segundos");
-      puts("                 filename: caminho para o arquivo a ser feito o upload: intel-hex ou raw.");
+      puts("                 filename: Caminho para o arquivo a ser feito o upload: intel-hex ou raw.");
       puts("                           Ou \"-\" para ser lido por stdin");
       puts("");
       puts(MICRONUCLEUS_COMMANDLINE_VERSION);
@@ -146,7 +146,7 @@ int main(int argc, char **argv) {
     }
 
     arg_pointer += 1;
-  }
+  }  
 
   if (file == NULL && erase_only == 0) {
     printf("Não foi fornecido um arquivo para upload nem o comando --erase-only!\n\n");
@@ -157,8 +157,8 @@ int main(int argc, char **argv) {
   setProgressData("aguardando", 1);
   if (dump_progress) printProgress(0.5);
   printf("> Conecte o dispositivo ou aperte RESET\n");
-  printf("> Pressione CTRL+C para finalizar o programa\n");
-
+  //printf("> Pressione CTRL+C para finalizar o programa\n"); //this program will be called bu Arduino IDE, so HID input shouldn't work
+  fflush(stdout);
 
   time_t start_time, current_time;
   time(&start_time);
@@ -179,6 +179,7 @@ int main(int argc, char **argv) {
   }
 
   printf("> Dispositivo encontrado!\n");
+  fflush(stdout);
 
   if (!fast_mode) {
     // wait for CONNECT_WAIT milliseconds with progress output
@@ -198,7 +199,7 @@ int main(int argc, char **argv) {
   printf("> Tempo de sleep sugerido entre o envio das pages: %ums\n", my_device->write_sleep);
   printf("> Quantidade total de pages: %d  tamanho da page: %d\n", my_device->pages,my_device->page_size);
   printf("> Duração do tempo de sleep da função EraseFlash: %dms\n", my_device->erase_sleep);
-
+  fflush(stdout);
 
   int startAddress = 1, endAddress = 0;
 
@@ -241,6 +242,7 @@ int main(int argc, char **argv) {
   if (res == 1) { // erase disconnection bug workaround
     printf(">> Ops! A conexão com o dispositivo foi perdida enquanto a memória era apagada! Não se preocupe\n");
     printf(">> isso acontece em alguns computadores - reconectando...\n");
+    fflush(stdout);
     my_device = NULL;
 
     delay(CONNECT_WAIT);
@@ -254,10 +256,12 @@ int main(int argc, char **argv) {
       if (deciseconds_till_reconnect_notice == 0) {
         printf(">> (!) Não foi possível reestabelecer a conexão. Desconecte e reconecte\n");
         printf("   o dispositivo, ou pressione o botão de reset\n");
+        fflush(stdout);
       }
     }
 
     printf(">> Conexão reestabelecida! Continuando a sequência de upload...\n");
+    fflush(stdout);
 
   } else if (res != 0) {
     printf(">> Erro %d ocorreu enquanto a memória Flash era apagada...\n", res);
@@ -268,6 +272,7 @@ int main(int argc, char **argv) {
 
   if (!erase_only) {
     printf("> Iniciando o upload...\n");
+    fflush(stdout);
     setProgressData("carregando", 5);
     res = micronucleus_writeFlash(my_device, endAddress, dataBuffer, printProgress);
     if (res != 0) {
@@ -279,6 +284,7 @@ int main(int argc, char **argv) {
 
   if (run) {
     printf("> Iniciando a aplicação do usuário ...\n");
+    fflush(stdout);
     setProgressData("iniciando", 6);
     printProgress(0.0);
 
@@ -294,6 +300,7 @@ int main(int argc, char **argv) {
   }
 
   printf(">> Upload pelo Micronucleus concluído. Obrigado!\n");
+  fflush(stdout);
 
   return EXIT_SUCCESS;
 }
@@ -306,6 +313,7 @@ static void printProgress(float progress) {
 
   if (dump_progress) {
     printf("{status:\"%s\",estágio atual:%d,total de estágios:%d,progresso:%f}\n", progress_friendly_name, progress_step, progress_total_steps, progress);
+    fflush(stdout);
   } else {
     if (last_step == progress_step && use_ansi) {
       #ifndef WIN
@@ -321,7 +329,8 @@ static void printProgress(float progress) {
 
     if (use_ansi || integer_total_progress >= last_integer_total_progress + 5) {
       printf("%s: %d%% \n", progress_friendly_name, integer_total_progress);
-      last_integer_total_progress = integer_total_progress;
+      fflush(stdout);
+      last_integer_total_progress = integer_total_progress;      
     }
   }
 
@@ -368,6 +377,7 @@ static int parseIntelHex(char *hexfile, unsigned char *buffer, int *startAddr, i
   input = strcmp(hexfile, "-") == 0 ? stdin : fopen(hexfile, "r");
   if (input == NULL) {
     printf("> Erro ao abrir %s: %s\n", hexfile, strerror(errno));
+    fflush(stdout);
     return 1;
   }
 
@@ -391,6 +401,7 @@ static int parseIntelHex(char *hexfile, unsigned char *buffer, int *startAddr, i
     sum += parseHex(input, 2);
     if ((sum & 0xff) != 0) {
       printf("> Aviso: Erro no Checksum entre os endereços 0x%x e 0x%x\n", base, address);
+      fflush(stdout);
     }
 
     if(*startAddr > base) {
@@ -414,6 +425,7 @@ static int parseRaw(char *filename, unsigned char *data_buffer, int *start_addre
 
   if (input == NULL) {
     printf("> Erro ao ler %s: %s\n", filename, strerror(errno));
+    fflush(stdout);
     return 1;
   }
 
