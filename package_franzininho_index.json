@@ -16,9 +16,9 @@
           "help": {"online": "http://www.franzininho.com.br"},
           "url": "https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/franzininho-avr.zip?raw=true",
           "archiveFileName": "franzininho-avr.zip",
-          "size": "1152085",
+          "size": "345973",          
           "boards": [
-            {"name": "Franzininho tiny(tiny841)"},
+            {"name": "Franzininho tiny841"},
             {"name": "Franzininho DIY(tiny85)"}
           ],
           "toolsDependencies": [
@@ -41,12 +41,6 @@
               "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/i686-mingw32.zip?raw=true",
               "archiveFileName":"i686-mingw32.zip",
               "size":"42243"  
-            },
-            {
-              "host":"x86_64-linux-gnu",
-              "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/micronucleus-1.1.0-linux-x86_64.zip?raw=true",
-              "archiveFileName":"micronucleus-1.1.0-linux-x86_64.zip",
-              "size":"22464"
             }
           ]
         }
