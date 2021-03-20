@@ -18,14 +18,14 @@
           "archiveFileName": "franzininho-avr.zip",
           "size": "1152085",
           "boards": [
-            {"name": "Franzininho tiny841"},
+            {"name": "Franzininho tiny(tiny841)"},
             {"name": "Franzininho DIY(tiny85)"}
           ],
           "toolsDependencies": [
             {
               "packager": "franzininho",
               "name": "micronucleus",
-              "version": "2.0a4"
+              "version": "2.04"
             }
           ]
         }
@@ -34,13 +34,13 @@
       "tools": [
         {
           "name":"micronucleus",
-          "version":"2.0a4",
+          "version":"2.04",
           "systems": [
             {
               "host":"i686-mingw32",
-              "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/micronucleus-1.1.0-win.zip?raw=true",
-              "archiveFileName":"micronucleus-1.1.0-win.zip",
-              "size":"39936"  
+              "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/i686-mingw32.zip?raw=true",
+              "archiveFileName":"i686-mingw32.zip",
+              "size":"42243"  
             },
             {
               "host":"x86_64-linux-gnu",
