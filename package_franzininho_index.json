@@ -41,6 +41,18 @@
               "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/i686-mingw32.zip?raw=true",
               "archiveFileName":"i686-mingw32.zip",
               "size":"39909"  
+            },
+            {
+              "host":"i686-linux-gnu",
+              "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/i686-linux-gnu.tar.bz2?raw=true",
+              "archiveFileName":"i686-linux-gnu.tar.bz2",
+              "size":"25138"  
+            },
+            {
+              "host":"x86_64-linux-gnu",
+              "url":"https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/tools_file/x86_64-linux-gnu.tar.bz2?raw=true",
+              "archiveFileName":"x86_64-linux-gnu.tar.bz2",
+              "size":"25600"  
             }
           ]
         }
