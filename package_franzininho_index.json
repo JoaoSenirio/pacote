@@ -16,7 +16,7 @@
           "help": {"online": "http://www.franzininho.com.br"},
           "url": "https://github.com/JoaoSenirio/pacote/blob/PackageUpgrade_v2/franzininho-avr.zip?raw=true",
           "archiveFileName": "franzininho-avr.zip",
-          "size": "345973",          
+          "size": "338662",          
           "boards": [
             {"name": "Franzininho tiny841"},
             {"name": "Franzininho DIY(tiny85)"}
