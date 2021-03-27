@@ -14,7 +14,7 @@ tiny841.menu.core.arduino.build.core=arduino:arduino
 tiny841.menu.core.arduino.build.variant=tiny14
 tiny841.menu.core.arduino.build.board=AVR_ATTINY841
 # info menu item
-tiny841.menu.msg.info= Pressione RESET quando a mensagem de carregar aparecer
+#tiny841.menu.msg.info= Pressione RESET quando a mensagem de carregar aparecer
 
 tiny841.vid.0=0x16D0
 tiny841.pid.0=0x0753
@@ -51,7 +51,7 @@ tiny85.menu.core.arduino.build.core=arduino:arduino
 tiny85.menu.core.arduino.build.variant=tiny8
 tiny85.menu.core.arduino.build.board=AVR_ATTINY85
 # info menu item
-tiny85.menu.msg.info= Pressione RESET quando a mensagem de carregar aparecer
+#tiny85.menu.msg.info= Pressione RESET quando a mensagem de carregar aparecer
 
 tiny85.vid.0=0x16D0
 tiny85.pid.0=0x0753
