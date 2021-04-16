@@ -33,6 +33,13 @@
 #include <string.h>
 #include <errno.h>
 
+#define e_acendoagudo 130
+#define i_acentoagudo 161
+#define o_acentoagudo 162
+#define a_til 198
+#define o_til 228
+#define cedilha 135
+
 micronucleus* micronucleus_connect(int fast_mode) {
   micronucleus *nucleus = NULL;
   struct usb_bus *busses;
@@ -54,12 +61,12 @@ micronucleus* micronucleus_connect(int fast_mode) {
         nucleus->version.major = (dev->descriptor.bcdDevice >> 8) & 0xFF;
         nucleus->version.minor = dev->descriptor.bcdDevice & 0xFF;
 
-        if (nucleus->version.major > MICRONUCLEUS_MAX_MAJOR_VERSION) {
+        if (nucleus->version.major < MICRONUCLEUS_MAX_MAJOR_VERSION){
           fprintf(stderr,
-                  "Aviso: um dispositivo com uma nova versão do micronucleus foi detectado.\n"
-                  "A ferramenta atual desconhece como fazer upload para esse dispositivo. Atualizações podem estar disponíveis.\n"
-                  "Versão do dispositivo detectado: %d.%d\n",
-                  nucleus->version.major, nucleus->version.minor);
+                  "Aviso: um dispositivo com uma nova vers%co do micronucleus foi detectado.\n" 
+                  "A ferramenta atual desconhece como fazer upload para esse dispositivo. Atualiza%c%ces podem estar dispon%cveis.\n"
+                  "Vers%co do dispositivo detectado: %d.%d\n",
+                  a_til, cedilha, o_til, i_acentoagudo, a_til, nucleus->version.major, nucleus->version.minor);
           fflush(stdout);
           return NULL;
         }
@@ -216,9 +223,9 @@ int micronucleus_writeFlash(micronucleus* deviceHandle, unsigned int program_siz
           userReset = (word0 & 0x0fff) - 0 + 1;    
         } else {
           fprintf(stderr,
-                  "O vetor de reset da aplicação não contém um instrução de desvio (branch instruction),\n "
-                  "dessa forma o bootloader não pode ser inserido. Por favor revise o seu código.\n"
-                  );
+                  "O vetor de reset da aplica%c%co n%co cont%cm um instru%c%co de desvio (branch instruction),\n"
+                  "dessa forma o bootloader n%co pode ser inserido. Por favor revise o seu c%cdigo.\n"
+                  ,cedilha, a_til, a_til, e_acendoagudo, cedilha, a_til, a_til, o_acentoagudo);
           fflush(stdout);
           return -1;         
         } 

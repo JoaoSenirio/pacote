@@ -61,7 +61,7 @@ typedef struct _micronucleus_version {
   unsigned char minor;
 } micronucleus_version;
 
-#define MICRONUCLEUS_COMMANDLINE_VERSION "Versão da ferramenta de upload: 2.04"
+#define MICRONUCLEUS_COMMANDLINE_VERSION "2.04"
 
 // handle representing one micronucleus device
 typedef struct _micronucleus {
