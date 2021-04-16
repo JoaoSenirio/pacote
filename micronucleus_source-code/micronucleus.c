@@ -28,12 +28,14 @@ Created: September 2012
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <locale.h>
 #include "micronucleus_lib.h"
 #include "littleWire_util.h"
 
 #define FILE_TYPE_INTEL_HEX 1
 #define FILE_TYPE_RAW 2
 #define CONNECT_WAIT 250 /* milliseconds to wait after detecting device on usb bus - probably excessive */
+
 
 /******************************************************************************
 * Global definitions
@@ -88,6 +90,8 @@ int main(int argc, char **argv) {
   #else
     use_ansi = 1;
   #endif
+
+  setlocale(LC_ALL, "");
 
   while (arg_pointer < argc) {
     if (strcmp(argv[arg_pointer], "--run") == 0) {
@@ -197,7 +201,7 @@ int main(int argc, char **argv) {
   if (my_device->signature1) printf("> Assinatura do dispositivo: 0x1e%02x%02x\n",(int)my_device->signature1,(int)my_device->signature2);
   printf("> Espaço disponível para aplicações: %d bytes\n", my_device->flash_size);
   printf("> Tempo de sleep sugerido entre o envio das pages: %ums\n", my_device->write_sleep);
-  printf("> Quantidade total de pages: %d  tamanho da page: %d\n", my_device->pages,my_device->page_size);
+  printf("> Quantidade total de pages: %d  - Tamanho da page: %d\n", my_device->pages,my_device->page_size);
   printf("> Tempo de sleep da função EraseFlash: %dms\n", my_device->erase_sleep);
   fflush(stdout);
 
@@ -223,7 +227,7 @@ int main(int argc, char **argv) {
     printProgress(1.0);
 
     if (startAddress >= endAddress) {
-      printf("> Nenhum dado referente ao arquivo de programa.\n");
+      printf("> Sem dados referentes ao arquivo de programa.\n");
       return EXIT_FAILURE;
     }
 
