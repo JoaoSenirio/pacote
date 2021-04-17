@@ -115,24 +115,24 @@ int main(int argc, char **argv) {
     } else if (strcmp(argv[arg_pointer], "--help") == 0 || strcmp(argv[arg_pointer], "-h") == 0) {
       puts(usage);
       printf("\n  --type [intel-hex, raw]: Define o arquivo de upload como intel-hex ou raw");
-      printf("\n                           (intel-hex %c padr%co)", e_acendoagudo, a_til);
+      printf("\n                           (intel-hex %c padr%co).", e_acendoagudo, a_til);
       printf("\n          --dump-progress: Define uma forma mais amig%cvel de apresenta%c%co dos dados", a_acentoagudo, cedilha, a_til);
-      printf("\n                           de sa%cda do programa para interface gr%cfica", i_acentoagudo, a_acentoagudo);
-      printf("\n            --erase-only:  Apaga a mem%cria do dispositivo, sem carregar um novo programa.", o_acentoagudo);
+      printf("\n                           de sa%cda do programa para interface gr%cfica.", i_acentoagudo, a_acentoagudo);
+      printf("\n            --erase-only:  Apaga a mem%cria do dispositivo sem carregar um novo programa.", o_acentoagudo);
       printf("\n                           Preenche a mem%cria de programa (Flash memory) com 0xFFFF.", o_acentoagudo);
       printf("\n                           Qualquer outro arquivo %c ignorado.", e_acendoagudo);
       printf("\n              --fast-mode: Acelera o tempo de conex%co entre o programa e o dispositivo em 2ms.", a_til);
-      printf("\n                           N%co use se ocorrer erros na conex%co USB.", a_til, a_til);
+      printf("\n                           N%co use se ocorrer erros na conex%co USB!", a_til, a_til);
       printf("\n                    --run: Invoca o bootloader para iniciar o programa quando");
-      printf("\n                           o upload terminar");
+      printf("\n                           o upload terminar.");
       #ifndef WIN
-      printf("\n                --no-ansi: Desabilita o uso de ANSI na sa%cda do terminal", i_acentoagudo);
+      printf("\n                --no-ansi: Desabilita o uso de ANSI na sa%cda do terminal.", i_acentoagudo);
       #endif
-      printf("\n      --timeout [integer]: Define um tempo de espera especificado em segundos");
+      printf("\n      --timeout [integer]: Define um tempo de espera especificado em segundos.");
       printf("\n                 filename: Define um caminho para o arquivo a ser feito o upload: intel-hex ou raw.");
-      printf("\n                           Ou \"-\" para ser lido por stdin");
+      printf("\n                           Ou \"-\" para ser lido por stdin.");
       printf("\n");
-      printf("Vers%co da ferramenta de upload: %s", a_til, MICRONUCLEUS_COMMANDLINE_VERSION);
+      printf("Vers%co da ferramenta de upload: %s.", a_til, MICRONUCLEUS_COMMANDLINE_VERSION);
       return EXIT_SUCCESS;
     } else if (strcmp(argv[arg_pointer], "--dump-progress") == 0) {
       dump_progress = 1;
@@ -146,7 +146,7 @@ int main(int argc, char **argv) {
     } else if (strcmp(argv[arg_pointer], "--timeout") == 0) {
       arg_pointer += 1;
       if (sscanf(argv[arg_pointer], "%d", &timeout) != 1) {
-        printf("\nValor inv%clido de --timeout", a_acentoagudo);
+        printf("\nValor inv%clido de --timeout.", a_acentoagudo);
         return EXIT_FAILURE;
       }
     } else {
@@ -264,7 +264,7 @@ int main(int argc, char **argv) {
 
       if (deciseconds_till_reconnect_notice == 0) {
         printf(">> (!) N%co foi possível reestabelecer a conex%co. Desconecte e reconecte\n",a_til, a_til);
-        printf("   o dispositivo, ou pressione o bot%co de reset\n", a_til);
+        printf("   o dispositivo, ou pressione o bot%co de reset.\n", a_til);
         fflush(stdout);
       }
     }
