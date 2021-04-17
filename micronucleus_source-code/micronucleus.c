@@ -35,15 +35,6 @@ Created: September 2012
 #define FILE_TYPE_RAW 2
 #define CONNECT_WAIT 250 /* milliseconds to wait after detecting device on usb bus - probably excessive */
 
-#define a_acentoagudo 160
-#define e_acendoagudo 130
-#define i_acentoagudo 161
-#define o_acentoagudo 162
-#define a_til 198
-#define o_til 228
-#define e_circunflexo 136
-#define cedilha 135
-
 /******************************************************************************
 * Global definitions
 ******************************************************************************/
@@ -109,30 +100,31 @@ int main(int argc, char **argv) {
       } else if (strcmp(argv[arg_pointer], "raw") == 0) {
         file_type = FILE_TYPE_RAW;
       } else {
-        printf("\nO tipo de arquivo especificado em --type option %c desconhecido", e_acendoagudo);
+        printf("\nO tipo de arquivo especificado em --type option é desconhecido.");
         return EXIT_FAILURE;
       }
     } else if (strcmp(argv[arg_pointer], "--help") == 0 || strcmp(argv[arg_pointer], "-h") == 0) {
       puts(usage);
-      printf("\n  --type [intel-hex, raw]: Define o arquivo de upload como intel-hex ou raw");
-      printf("\n                           (intel-hex %c padr%co).", e_acendoagudo, a_til);
-      printf("\n          --dump-progress: Define uma forma mais amig%cvel de apresenta%c%co dos dados", a_acentoagudo, cedilha, a_til);
-      printf("\n                           de sa%cda do programa para interface gr%cfica.", i_acentoagudo, a_acentoagudo);
-      printf("\n            --erase-only:  Apaga a mem%cria do dispositivo sem carregar um novo programa.", o_acentoagudo);
-      printf("\n                           Preenche a mem%cria de programa (Flash memory) com 0xFFFF.", o_acentoagudo);
-      printf("\n                           Qualquer outro arquivo %c ignorado.", e_acendoagudo);
-      printf("\n              --fast-mode: Acelera o tempo de conex%co entre o programa e o dispositivo em 2ms.", a_til);
-      printf("\n                           N%co use se ocorrer erros na conex%co USB!", a_til, a_til);
-      printf("\n                    --run: Invoca o bootloader para iniciar o programa quando");
-      printf("\n                           o upload terminar.");
-      #ifndef WIN
-      printf("\n                --no-ansi: Desabilita o uso de ANSI na sa%cda do terminal.", i_acentoagudo);
-      #endif
-      printf("\n      --timeout [integer]: Define um tempo de espera especificado em segundos.");
-      printf("\n                 filename: Define um caminho para o arquivo a ser feito o upload: intel-hex ou raw.");
-      printf("\n                           Ou \"-\" para ser lido por stdin.");
       printf("\n");
-      printf("Vers%co da ferramenta de upload: %s.", a_til, MICRONUCLEUS_COMMANDLINE_VERSION);
+      puts("  --type [intel-hex, raw]: Define o arquivo de upload como intel-hex ou raw");
+      puts("                           (intel-hex é padrão).");
+      puts("          --dump-progress: Define uma forma mais amigável de apresentação dos dados");
+      puts("                           de saída do programa para interface gráfica.");
+      puts("            --erase-only:  Apaga a memória do dispositivo sem carregar um novo programa.");
+      puts("                           Preenche a memória de programa (Flash memory) com 0xFFFF.");
+      puts("                           Qualquer outro arquivo é ignorado.");
+      puts("              --fast-mode: Acelera o tempo de conexão entre o programa e o dispositivo em 2ms.");
+      puts("                           Não use se ocorrer erros na conexão USB!");
+      puts("                    --run: Invoca o bootloader para iniciar o programa quando");
+      puts("                           o upload terminar.");
+      #ifndef WIN
+      puts("                --no-ansi: Desabilita o uso de ANSI na saída do terminal.");
+      #endif
+      puts("      --timeout [integer]: Define um tempo de espera especificado em segundos.");
+      puts("                 filename: Define um caminho para o arquivo a ser feito o upload: intel-hex ou raw.");
+      puts("                           Ou \"-\" para ser lido por stdin.");
+      printf("\n");
+      printf("Versão da ferramenta de upload: %s.", MICRONUCLEUS_COMMANDLINE_VERSION);
       return EXIT_SUCCESS;
     } else if (strcmp(argv[arg_pointer], "--dump-progress") == 0) {
       dump_progress = 1;
@@ -146,7 +138,7 @@ int main(int argc, char **argv) {
     } else if (strcmp(argv[arg_pointer], "--timeout") == 0) {
       arg_pointer += 1;
       if (sscanf(argv[arg_pointer], "%d", &timeout) != 1) {
-        printf("\nValor inv%clido de --timeout.", a_acentoagudo);
+        printf("\nValor inválido de --timeout.");
         return EXIT_FAILURE;
       }
     } else {
@@ -157,7 +149,7 @@ int main(int argc, char **argv) {
   }  
 
   if (file == NULL && erase_only == 0) {
-    printf("\nN%co foi fornecido um arquivo para upload nem o comando --erase-only!\n\n", a_til);
+    printf("\nNão foi fornecido um arquivo para upload nem o comando --erase-only!\n\n");
     puts(usage);
     return EXIT_FAILURE;
   }
@@ -201,12 +193,12 @@ int main(int argc, char **argv) {
   }
   printProgress(1.0);
 
-  printf("> Vers%co do dispositivo: %d.%d\n", a_til, my_device->version.major, my_device->version.minor);
+  printf("> Versão do dispositivo: %d.%d\n", my_device->version.major, my_device->version.minor);
   if (my_device->signature1) printf("> Assinatura do dispositivo: 0x1e%02x%02x\n", (int)my_device->signature1, (int)my_device->signature2);
-  printf("> Espa%co dispon%cvel para aplica%c%ces: %d bytes\n", cedilha, i_acentoagudo, cedilha, o_til, my_device->flash_size);
+  printf("> Espaço disponível para aplicações: %d bytes\n", my_device->flash_size);
   printf("> Tempo de sleep sugerido entre o envio das pages: %ums\n", my_device->write_sleep);
   printf("> Quantidade total de pages: %d - Tamanho da page: %d\n", my_device->pages,my_device->page_size);
-  printf("> Tempo de sleep da fun%c%co EraseFlash: %dms\n", cedilha, a_til, my_device->erase_sleep);
+  printf("> Tempo de sleep da função EraseFlash: %dms\n", my_device->erase_sleep);
   fflush(stdout);
 
   int startAddress = 1, endAddress = 0;
@@ -236,7 +228,7 @@ int main(int argc, char **argv) {
     }
 
     if (endAddress > my_device->flash_size) {
-      printf("> O arquivo de programa excede em %d bytes o espa%co dispon%cvel!\n", endAddress - my_device->flash_size, cedilha, i_acentoagudo);
+      printf("> O arquivo de programa excede em %d bytes o espaço disponível!\n", endAddress - my_device->flash_size);
       return EXIT_FAILURE;
     }
   }
@@ -244,12 +236,12 @@ int main(int argc, char **argv) {
   printProgress(1.0);
 
   setProgressData("apagando", 4);
-  printf("> Apagando a mem%cria ...\n", o_acentoagudo);
+  printf("> Apagando a memória ...\n");
   fflush(stdout);
   res = micronucleus_eraseFlash(my_device, printProgress);
 
   if (res == 1) { // erase disconnection bug workaround
-    printf(">> Ops! A conex%co com o dispositivo foi perdida enquanto a mem%cria era apagada! Não se preocupe\n", a_til, o_acentoagudo);
+    printf(">> Ops! A conexão com o dispositivo foi perdida enquanto a memória era apagada! Não se preocupe\n");
     printf(">> isso acontece em alguns computadores - reconectando...\n");
     fflush(stdout);
     my_device = NULL;
@@ -263,17 +255,17 @@ int main(int argc, char **argv) {
       deciseconds_till_reconnect_notice -= 1;
 
       if (deciseconds_till_reconnect_notice == 0) {
-        printf(">> (!) N%co foi possível reestabelecer a conex%co. Desconecte e reconecte\n",a_til, a_til);
-        printf("   o dispositivo, ou pressione o bot%co de reset.\n", a_til);
+        printf(">> (!) Não foi possível reestabelecer a conexão. Desconecte e reconecte\n");
+        printf("   o dispositivo, ou pressione o botão de reset.\n");
         fflush(stdout);
       }
     }
 
-    printf(">> Conex%co reestabelecida! Continuando a sequ%cncia de upload...\n", a_til, e_circunflexo);
+    printf(">> Conexão reestabelecida! Continuando a sequência de upload...\n");
     fflush(stdout);
 
   } else if (res != 0) {
-    printf(">> Erro %d ocorreu enquanto a mem%cria Flash era apagada...\n", res, o_acentoagudo);
+    printf(">> Erro %d ocorreu enquanto a memória Flash era apagada...\n", res);
     printf(">> Por favor desconecte o dispositivo e reinicie o programa.\n");
     return EXIT_FAILURE;
   }
@@ -285,14 +277,14 @@ int main(int argc, char **argv) {
     setProgressData("carregando", 5);
     res = micronucleus_writeFlash(my_device, endAddress, dataBuffer, printProgress);
     if (res != 0) {
-      printf(">> Erro %d ocorreu enquanto a mem%cria Flash era escrita...\n", res, o_acentoagudo);
+      printf(">> Erro %d ocorreu enquanto a memória Flash era escrita...\n", res);
       printf(">> Por favor desconecte o dispositivo e reinicie o programa.\n");
       return EXIT_FAILURE;
     }
   }
 
   if (run) {
-    printf("> Iniciando a aplica%c%co do usuário ...\n", cedilha, a_til);
+    printf("> Iniciando a aplicação do usuário ...\n");
     fflush(stdout);
     setProgressData("iniciando", 6);
     printProgress(0.0);
@@ -300,7 +292,7 @@ int main(int argc, char **argv) {
     res = micronucleus_startApp(my_device);
 
     if (res != 0) {
-      printf(">> Erro %d ocorreu enquanto aplica%c%co do usu%crio era iniciada...\n", res, cedilha, a_til, a_acentoagudo);
+      printf(">> Erro %d ocorreu enquanto aplicação do usuário era iniciada...\n", res);
       printf(">> Por favor desconecte o dispositivo e reinicie o programa.\n");
       return EXIT_FAILURE;
     }
@@ -308,7 +300,7 @@ int main(int argc, char **argv) {
     printProgress(1.0);
   }
 
-  printf(">> Upload pelo Micronucleus conclu%cdo. Obrigado!\n", i_acentoagudo);
+  printf(">> Upload pelo Micronucleus concluído. Obrigado!\n");
   fflush(stdout);
 
   return EXIT_SUCCESS;
@@ -321,7 +313,7 @@ static void printProgress(float progress) {
   static int last_integer_total_progress;
 
   if (dump_progress) {
-    printf("{status:\"%s\",est%cgio atual:%d,total de est%cgios:%d,progresso:%f}\n", progress_friendly_name, a_acentoagudo, progress_step, a_acentoagudo, progress_total_steps, progress);
+    printf("{status:\"%s\",estágio atual:%d,total de estágios:%d,progresso:%f}\n", progress_friendly_name, progress_step, progress_total_steps, progress);
     fflush(stdout);
   } else {
     if (last_step == progress_step && use_ansi) {
@@ -409,7 +401,7 @@ static int parseIntelHex(char *hexfile, unsigned char *buffer, int *startAddr, i
 
     sum += parseHex(input, 2);
     if ((sum & 0xff) != 0) {
-      printf("> Aviso: Erro no checksum entre os endere%cos 0x%x e 0x%x\n", cedilha, base, address);
+      printf("> Aviso: Erro no checksum entre os endereços 0x%x e 0x%x\n", base, address);
       fflush(stdout);
     }
 
